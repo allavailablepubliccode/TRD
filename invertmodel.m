@@ -6,16 +6,16 @@ function LAP = invertmodel(data)
 
 % model states
 %--------------------------------------------------------------------------
-x.e        	= 0;                    % excitatory dependent variable       
-x.i       	= 0;                    % inhibitory dependent variable         
+x.e        	= 1/4;                    % excitatory dependent variable       
+x.i       	= 1/4;                    % inhibitory dependent variable         
 
 % model parameters
 %--------------------------------------------------------------------------
 P.A_EE    	= 0;                    % excitatory self-coupling 
-P.A_EI    	= 0;                    % inhibitory cross-coupling         
-P.A_IE  	  = 0;                    % excitatory cross-coupling  
-P.A_II  	  = 0;                    % inhibitory self-coupling    
-P.C       	= 0;                    % external coupling
+P.A_EI    	= -1/4;                    % inhibitory cross-coupling         
+P.A_IE  	= 1/4;                    % excitatory cross-coupling  
+P.A_II  	= 0;                    % inhibitory self-coupling    
+P.C       	= 1/4;                    % external coupling
 
 % observation function (to generate timeseries)
 %--------------------------------------------------------------------------
@@ -29,8 +29,8 @@ f = @(x,v,P) [P.A_EE*x.e + P.A_EI*x.i + P.C*v;
 % prior variance
 %--------------------------------------------------------------------------
 pC.fe     	= 1;
-pC.fi    	  = 1;
-pC.ge    	  = 1;
+pC.fi    	= 1;
+pC.ge    	= 1;
 pC.gi     	= 1;
 pC.C      	= 1;
 
